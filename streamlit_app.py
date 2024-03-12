@@ -15,12 +15,15 @@ with st.echo():
     from selenium.webdriver.chrome.options import Options
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
-    from webdriver_manager.utils import ChromeType
+    from webdriver_manager.core.os_manager import ChromeType
 
     @st.cache_resource
     def get_driver():
         return webdriver.Chrome(
-            service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
         )
 
     options = Options()
@@ -30,7 +33,7 @@ with st.echo():
     # on Streamlit's Community Cloud
     # Update this path to match the path of the installed Chromium binary
     # on your local machine
-    options.binary_location = "/usr/bin/chromium"  
+    options.binary_location = "/usr/bin/chromium"
 
     driver = get_driver()
     driver.get("http://example.com")
