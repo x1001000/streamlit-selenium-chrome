@@ -25,6 +25,11 @@ with st.echo():
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
+    # Specify the path to the installed Chromium binary
+    # on Streamlit's Community Cloud
+    # Update this path to match the path of the installed Chromium binary
+    # on your local machine
+    options.binary_location = "/usr/bin/chromium"  
 
     driver = get_driver()
     driver.get("http://example.com")
