@@ -30,7 +30,9 @@ with st.echo():
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
 
-    driver = get_driver()
-    driver.get("https://www.macromicro.me/charts/4500/tw-ntd-bond-yield")
-
-    st.code(driver.page_source)
+    url = st.text_input("Enter URL to scrape", "https://www.macromicro.me/charts/4500/tw-ntd-bond-yield")
+    
+    if st.button("Scrape URL"):
+        driver = get_driver()
+        driver.get(url)
+        st.code(driver.page_source)
